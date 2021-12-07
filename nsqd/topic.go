@@ -3,6 +3,7 @@ package nsqd
 import (
 	"bytes"
 	"errors"
+	"github.com/nsqio/go-diskqueue"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -240,7 +241,7 @@ func (t *Topic) messagePump() {
 	var err error
 	var chans []*Channel
 	var memoryMsgChan chan *Message
-	var backendChan chan []byte
+	var backendChan <-chan []byte
 
 	// do not pass messages before Start(), but avoid blocking Pause() or GetChannel()
 	for {

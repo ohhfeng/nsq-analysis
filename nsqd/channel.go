@@ -10,6 +10,8 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/nsqio/go-diskqueue"
+
 	"github.com/nsqio/nsq/internal/lg"
 	"github.com/nsqio/nsq/internal/pqueue"
 	"github.com/nsqio/nsq/internal/quantile"
@@ -43,7 +45,7 @@ type Channel struct {
 
 	sync.RWMutex
 
-	topicName          // channel 所属的 topic 的名字
+	topicName string   // channel 所属的 topic 的名字
 	name      string   // channel 的名字
 	ctx       *context // 上下文作用域
 

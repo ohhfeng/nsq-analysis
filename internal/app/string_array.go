@@ -14,3 +14,5 @@ func (a *StringArray) Set(s string) error {
 func (a *StringArray) String() string {
 	return strings.Join(*a, ",")
 }
+
+func (a *StringArray) Get() interface{} { return []string(*a) }
